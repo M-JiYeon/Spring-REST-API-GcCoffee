@@ -19,7 +19,7 @@ public class ProductController { // 관리자가 웹페이지에 접속하기 �
 
     @GetMapping("/products")
     public String productPage(Model model) {
-        var products = productService.getAllProduct();
+        var products = productService.getAllProducts();
         model.addAttribute("products", products);
         return "product-list";
     }

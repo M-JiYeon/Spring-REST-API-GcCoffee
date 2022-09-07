@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProductService {
     List<Product> getProductByCategory(Category category);
 
-    List<Product> getAllProduct();
+    List<Product> getAllProducts();
 
     Product createProduct(String productName, Category category, long price);
 
