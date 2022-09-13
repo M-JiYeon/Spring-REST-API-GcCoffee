@@ -1,8 +1,9 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ProductList} from "./components/ProductList";
 import {Summary} from "./components/Summary";
+import axios from "axios";
 
 function App() {
   const [products, setProducts] = useState([
@@ -18,6 +19,10 @@ function App() {
       = found ? items.map(v => (v.id === id) ? { ...v, count: v.count + 1 } : v) : [...items, { ...product, count: 1 }];
     setItems(updateItems);
   }
+  useEffect(() => { // 준비가 다 되면 호출
+    axios.get('http://localhost:8080/api/v1/products')
+      .then(v => setProducts(v.data))
+  }, []) // 빈 배열을 주면 랜더링이 끝나고 딱 한번만 실행.
   return (
     <div className="container-fluid">
       <div className="row justify-content-center m-4">
